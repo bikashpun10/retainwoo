@@ -92,7 +92,7 @@ public static function sanitize_option( $value ) {
             <div class="cs-page-header">
                 <div class="cs-page-header-left">
                     <?php
-                        $logo_file = file_exists( RETAINWOO_PATH . 'assets/images/logo.svg' ) ? 'logo.svg' : ( file_exists( RETAINWOO_PATH . 'assets/images/logo.png' ) ? 'logo.png' : '' );
+                        $logo_file = file_exists( RETAINWOO_PATH . 'assets/images/logo.png' ) ? 'logo.png' : '';
                         $logo_url  = $logo_file ? RETAINWOO_URL . 'assets/images/' . $logo_file : '';
                         ?>
                     <div class="cs-logo"><?php if ( $logo_url ) : ?><img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php esc_attr_e( 'RetainWoo', 'retainwoo' ); ?>" width="42" height="42" /><?php else : ?>🛡️<?php endif; ?></div>
@@ -206,7 +206,7 @@ public static function sanitize_option( $value ) {
             <div class="cs-page-header">
                 <div class="cs-page-header-left">
                     <?php
-                        $logo_file = file_exists( RETAINWOO_PATH . 'assets/images/logo.svg' ) ? 'logo.svg' : ( file_exists( RETAINWOO_PATH . 'assets/images/logo.png' ) ? 'logo.png' : '' );
+                        $logo_file = file_exists( RETAINWOO_PATH . 'assets/images/logo.png' ) ? 'logo.png' : '';
                         $logo_url  = $logo_file ? RETAINWOO_URL . 'assets/images/' . $logo_file : '';
                         ?>
                     <div class="cs-logo"><?php if ( $logo_url ) : ?><img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php esc_attr_e( 'RetainWoo', 'retainwoo' ); ?>" width="42" height="42" /><?php else : ?>🛡️<?php endif; ?></div>
