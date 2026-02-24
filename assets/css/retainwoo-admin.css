@@ -1,0 +1,612 @@
+/* ================================================================
+   RetainWoo — Admin Dashboard UI
+   Professional, clean, WordPress.org ready
+   ================================================================ */
+
+
+
+/* ── Variables ── */
+.cs-wrap {
+  --cs-primary: #1a1a2e;
+  --cs-accent: #4f46e5;
+  --cs-green: #10b981;
+  --cs-blue: #3b82f6;
+  --cs-purple: #8b5cf6;
+  --cs-amber: #f59e0b;
+  --cs-red: #ef4444;
+  --cs-surface: #ffffff;
+  --cs-bg: #f4f6fb;
+  --cs-border: #e8eaf2;
+  --cs-text: #1a1a2e;
+  --cs-muted: #6b7280;
+  --cs-radius: 14px;
+  --cs-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--cs-text);
+  max-width: 1100px;
+}
+
+/* ── Page header ── */
+.cs-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--cs-border);
+}
+
+.cs-page-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cs-logo {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #1a1a2e, #0f3460);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(15, 52, 96, 0.3);
+}
+
+.cs-page-header h1 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: var(--cs-primary) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  border: none !important;
+}
+
+.cs-page-header .cs-version {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cs-muted);
+  background: var(--cs-bg);
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--cs-border);
+  margin-top: 2px;
+}
+
+.cs-plugin-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #166534;
+}
+
+.cs-plugin-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cs-green);
+  animation: cs-adm-pulse 2s infinite;
+}
+
+@keyframes cs-adm-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+/* ── Section title ── */
+.cs-section-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--cs-muted);
+  margin: 28px 0 12px;
+}
+
+/* ── Stats grid ── */
+.cs-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 1000px) {
+  .cs-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cs-stats-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs-stat {
+  background: var(--cs-surface);
+  border-radius: var(--cs-radius);
+  padding: 20px 22px;
+  box-shadow: var(--cs-shadow);
+  border: 1px solid var(--cs-border);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cs-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+}
+
+.cs-stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.cs-stat.cs-green::before {
+  background: var(--cs-green);
+}
+
+.cs-stat.cs-blue::before {
+  background: var(--cs-blue);
+}
+
+.cs-stat.cs-purple::before {
+  background: var(--cs-purple);
+}
+
+.cs-stat.cs-amber::before {
+  background: var(--cs-amber);
+}
+
+.cs-stat-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.cs-stat-num {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--cs-text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.cs-stat-lbl {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cs-muted);
+}
+
+.cs-stat-change {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cs-green);
+  background: #f0fdf4;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* ── Two column layout ── */
+.cs-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 800px) {
+  .cs-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Cards ── */
+.cs-card {
+  background: var(--cs-surface);
+  border-radius: var(--cs-radius);
+  border: 1px solid var(--cs-border);
+  box-shadow: var(--cs-shadow);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.cs-card-head {
+  padding: 18px 22px 16px;
+  border-bottom: 1px solid var(--cs-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cs-card-head h2 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: var(--cs-text) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.cs-card-body {
+  padding: 20px 22px;
+}
+
+/* ── Table ── */
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cs-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--cs-muted);
+  padding: 0 0 10px;
+  border-bottom: 1px solid var(--cs-border);
+}
+
+.cs-table td {
+  padding: 12px 0;
+  font-size: 13.5px;
+  border-bottom: 1px solid #f5f5f8;
+  color: var(--cs-text);
+}
+
+.cs-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cs-table .cs-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0f0ff;
+  color: var(--cs-accent);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* ── Tips list ── */
+.cs-tips {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.cs-tips li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 0;
+  font-size: 13.5px;
+  color: #444;
+  border-bottom: 1px solid #f5f5f8;
+  line-height: 1.5;
+}
+
+.cs-tips li:last-child {
+  border-bottom: none;
+}
+
+.cs-tips li .cs-tip-icon {
+  flex-shrink: 0;
+  font-size: 15px;
+  margin-top: 1px;
+}
+
+/* ── Empty state ── */
+.cs-empty {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--cs-muted);
+  font-size: 13.5px;
+}
+
+.cs-empty-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+/* ── Settings form ── */
+.cs-settings-section {
+  background: var(--cs-surface);
+  border-radius: var(--cs-radius);
+  border: 1px solid var(--cs-border);
+  box-shadow: var(--cs-shadow);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.cs-settings-head {
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--cs-border);
+  background: #fafbff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-settings-head h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  color: var(--cs-text) !important;
+}
+
+.cs-settings-head .cs-head-icon {
+  font-size: 18px;
+}
+
+.cs-settings-body {
+  padding: 20px 22px;
+}
+
+.cs-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f5f5f8;
+}
+
+.cs-field:last-child {
+  border-bottom: none;
+}
+
+.cs-field-label {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.cs-field-label strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--cs-text);
+  margin-bottom: 2px;
+}
+
+.cs-field-label span {
+  font-size: 11.5px;
+  color: var(--cs-muted);
+  line-height: 1.4;
+}
+
+.cs-field-control {
+  flex: 1;
+}
+
+/* ── Toggle switch ── */
+
+/* Hide native checkbox completely — use .cs-toggle-track + .cs-toggle-knob spans */
+.cs-toggle input[type="checkbox"] {
+  position: absolute !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+}
+
+.cs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Pill track */
+.cs-toggle-track {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  border-radius: 13px;
+  background: #d1d5db;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* White circle knob */
+.cs-toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.28);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ON state */
+.cs-toggle input[type="checkbox"]:checked+.cs-toggle-track {
+  background: var(--cs-accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+}
+
+.cs-toggle input[type="checkbox"]:checked+.cs-toggle-track .cs-toggle-knob {
+  transform: translateX(20px);
+}
+
+/* Label */
+.cs-toggle-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cs-muted);
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.cs-toggle input[type="checkbox"]:checked~.cs-toggle-label {
+  color: var(--cs-accent);
+}
+
+/* Text inputs */
+.cs-field-control input[type="text"],
+.cs-field-control input[type="number"] {
+  border: 1.5px solid var(--cs-border) !important;
+  border-radius: 9px !important;
+  padding: 9px 13px !important;
+  font-size: 13.5px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: var(--cs-text) !important;
+  background: #fafbff !important;
+  transition: border-color 0.15s, box-shadow 0.15s !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.cs-field-control input[type="text"]:focus,
+.cs-field-control input[type="number"]:focus {
+  border-color: var(--cs-accent) !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
+}
+
+.cs-field-control select {
+  border: 1.5px solid var(--cs-border) !important;
+  border-radius: 9px !important;
+  padding: 9px 13px !important;
+  font-size: 13.5px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: var(--cs-text) !important;
+  background: #fafbff !important;
+  cursor: pointer;
+}
+
+.cs-inline-fields {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Badge ── */
+.cs-badge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* ── Save button ── */
+.cs-save-btn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #1a1a2e, #0f3460) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 11px 24px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 4px 14px rgba(15, 52, 96, 0.3) !important;
+  height: auto !important;
+}
+
+.cs-save-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(15, 52, 96, 0.4) !important;
+}
+
+/* ── Nav tabs ── */
+.cs-nav {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: 12px;
+  padding: 5px;
+  width: fit-content;
+  box-shadow: var(--cs-shadow);
+}
+
+.cs-nav a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cs-muted) !important;
+  text-decoration: none !important;
+  transition: all 0.15s;
+}
+
+.cs-nav a:hover {
+  color: var(--cs-text) !important;
+  background: var(--cs-bg);
+}
+
+.cs-nav a.cs-active {
+  background: var(--cs-primary) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(26, 26, 46, 0.25);
+}
+
+.cs-pro-feature {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}

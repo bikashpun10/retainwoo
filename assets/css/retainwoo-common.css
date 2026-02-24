@@ -1,0 +1,30 @@
+/* Shared design tokens for RetainWoo — used by admin and frontend */
+:root {
+  --cs-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cs-primary: #1a1a2e;
+  --cs-primary-dark: #0f3460;
+  --cs-accent: #4f46e5;
+  --cs-green: #10b981;
+  --cs-blue: #3b82f6;
+  --cs-purple: #8b5cf6;
+  --cs-amber: #f59e0b;
+  --cs-red: #ef4444;
+  --cs-surface: #ffffff;
+  --cs-bg: #f4f6fb;
+  --cs-border: #e8eaf2;
+  --cs-text: #1a1a2e;
+  --cs-muted: #6b7280;
+  --cs-radius: 14px;
+  --cs-shadow-popup: 0 24px 64px rgba(0,0,0,0.22), 0 8px 24px rgba(0,0,0,0.12);
+  --cs-shadow-soft: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+}
+
+/* Base font for plugin UI */
+html .cs-popup-header h2,
+html .cs-popup-header p,
+.cs-wrap,
+#cs-popup,
+.cs-btn,
+.cs-card-head h2 {
+  font-family: var(--cs-font);
+}
