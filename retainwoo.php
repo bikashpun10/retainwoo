@@ -1,10 +1,11 @@
 <?php
 /**
- * Plugin Name:       RetainWoo - Subscription Retention
+ * Plugin Name:       RetainWoo
  * Description:       Intercepts WooCommerce subscription cancellations with smart retention offers. Show pause, skip, or discount offers before a subscriber cancels. Built-in win-back email. Works with WooCommerce Subscriptions, WebToffee, YITH, and SUMO.
+ * Plugin URI:        https://wordpress.org/plugins/retainwoo
  * Version:           1.0.0
  * Requires at least: 5.8
- * Tested up to:      6.7
+ * Tested up to:      6.9
  * Requires PHP:      7.4
  * Author:            Bikash Pun
  * Author URI:        https://envitetech.com
@@ -12,7 +13,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       retainwoo
  * Domain Path:       /languages
- * Requires Plugins:  WooCommerce
+ * Requires Plugins:  woocommerce
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,14 +35,11 @@ require_once RETAINWOO_PATH . 'admin/class-retainwoo-admin.php';
 /**
  * Load plugin text domain for translations.
  */
-function retainwoo_load_textdomain() {
-    load_plugin_textdomain(
-        'retainwoo',
-        false,
-        dirname( plugin_basename( __FILE__ ) ) . '/languages'
-    );
-}
-add_action( 'plugins_loaded', 'retainwoo_load_textdomain', 5 );
+// WordPress.org will automatically load translations for the plugin slug. No manual load is needed.
+//
+// The text domain used throughout the plugin has been changed to
+// text domain is 'retainwoo' for translations.
+// The load_plugin_textdomain() call was removed per WP.org guidelines.
 
 function retainwoo_init() {
     RetainWoo_Compat::detect();
@@ -59,8 +57,8 @@ add_action( 'plugins_loaded', 'retainwoo_init', 20 );
 
 function retainwoo_missing_plugin_notice() {
     echo '<div class="notice notice-warning is-dismissible"><p>';
-    echo '<strong>' . esc_html__( 'RetainWoo', 'retainwoo' ) . '</strong> ' . esc_html__( 'requires a supported subscription plugin:', 'retainwoo' ) . ' ';
-    echo esc_html__( 'WooCommerce Subscriptions, WebToffee Subscriptions, YITH WooCommerce Subscriptions, or SUMO Subscriptions.', 'retainwoo' );
+echo '<strong>' . esc_html__( 'RetainWoo', 'retainwoo' ) . '</strong> ' . esc_html__( 'requires a supported subscription plugin:', 'retainwoo' ) . ' ';
+echo esc_html__( 'WooCommerce Subscriptions, WebToffee Subscriptions, YITH WooCommerce Subscriptions, or SUMO Subscriptions.', 'retainwoo' );
     echo '</p></div>';
 }
 

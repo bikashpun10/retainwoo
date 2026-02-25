@@ -2,7 +2,7 @@
 Contributors:      retainwoo
 Tags:              woocommerce, subscriptions, retention, cancel, churn
 Requires at least: 5.8
-Tested up to:      6.7
+Tested up to:      6.9
 Stable tag:        1.0.0
 Requires PHP:      7.4
 License:           GPL-2.0-or-later
@@ -106,7 +106,6 @@ Yes. RetainWoo does not send any data to external servers. Win-back emails are s
 1. The retention popup shown when a subscriber clicks cancel
 2. The RetainWoo dashboard showing saves, revenue, and save rate
 3. The settings page with all configuration options
-4. The win-back email sent to subscribers who cancel anyway
 
 == Changelog ==
 
