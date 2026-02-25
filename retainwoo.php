@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name:       RetainWoo - Subscription Retention
- * Plugin URI:        https://wordpress.org/plugins/retainwoo
  * Description:       Intercepts WooCommerce subscription cancellations with smart retention offers. Show pause, skip, or discount offers before a subscriber cancels. Built-in win-back email. Works with WooCommerce Subscriptions, WebToffee, YITH, and SUMO.
  * Version:           1.0.0
  * Requires at least: 5.8
  * Tested up to:      6.7
  * Requires PHP:      7.4
  * Author:            Bikash Pun
+ * Author URI:        https://envitetech.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       retainwoo
