@@ -92,7 +92,7 @@ public static function sanitize_option( $value ) {
             <div class="cs-page-header">
                 <div class="cs-page-header-left">
                     <?php
-                        $logo_file = file_exists( RETAINWOO_PATH . 'assets/images/logo.png' ) ? 'logo.png' : '';
+                        $logo_file = file_exists( RETAINWOO_PATH . 'assets/images/logo.svg' ) ? 'logo.svg' : '';
                         $logo_url  = $logo_file ? RETAINWOO_URL . 'assets/images/' . $logo_file : '';
                         ?>
                     <div class="cs-logo"><?php if ( $logo_url ) : ?><img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php esc_attr_e( 'RetainWoo', 'retainwoo' ); ?>" width="42" height="42" /><?php else : ?>🛡️<?php endif; ?></div>
@@ -113,22 +113,22 @@ public static function sanitize_option( $value ) {
             <div class="cs-section-title"><?php esc_html_e( 'Last 30 days', 'retainwoo' ); ?></div>
             <div class="cs-stats-row">
                 <div class="cs-stat cs-green">
-                    <span class="cs-stat-icon">✅</span>
+                    <span class="cs-stat-icon"><img src="<?php echo esc_url( RETAINWOO_URL . 'assets/images/icon-cancellations-saved.svg' ); ?>" alt="<?php esc_attr_e( 'Cancellations Saved', 'retainwoo' ); ?>" width="64" height="64" /></span>
                     <div class="cs-stat-num"><?php echo esc_html( $stats['saved'] ); ?></div>
                     <div class="cs-stat-lbl"><?php esc_html_e( 'Cancellations Saved', 'retainwoo' ); ?></div>
                 </div>
                 <div class="cs-stat cs-blue">
-                    <span class="cs-stat-icon">💰</span>
+                    <span class="cs-stat-icon"><img src="<?php echo esc_url( RETAINWOO_URL . 'assets/images/icon-revenue-saved.svg' ); ?>" alt="<?php esc_attr_e( 'Est. Revenue Saved', 'retainwoo' ); ?>" width="64" height="64" /></span>
                     <div class="cs-stat-num">$<?php echo esc_html( number_format( $stats['rev_saved'], 0 ) ); ?></div>
                     <div class="cs-stat-lbl"><?php esc_html_e( 'Est. Revenue Saved', 'retainwoo' ); ?></div>
                 </div>
                 <div class="cs-stat cs-purple">
-                    <span class="cs-stat-icon">📈</span>
+                    <span class="cs-stat-icon"><img src="<?php echo esc_url( RETAINWOO_URL . 'assets/images/icon-save-rate.svg' ); ?>" alt="<?php esc_attr_e( 'Save Rate', 'retainwoo' ); ?>" width="64" height="64" /></span>
                     <div class="cs-stat-num"><?php echo esc_html( $stats['save_rate'] ); ?>%</div>
                     <div class="cs-stat-lbl"><?php esc_html_e( 'Save Rate', 'retainwoo' ); ?></div>
                 </div>
                 <div class="cs-stat cs-amber">
-                    <span class="cs-stat-icon">👁️</span>
+                    <span class="cs-stat-icon"><img src="<?php echo esc_url( RETAINWOO_URL . 'assets/images/icon-popups-shown.svg' ); ?>" alt="<?php esc_attr_e( 'Popups Shown', 'retainwoo' ); ?>" width="64" height="64" /></span>
                     <div class="cs-stat-num"><?php echo esc_html( $stats['shown'] ); ?></div>
                     <div class="cs-stat-lbl"><?php esc_html_e( 'Popups Shown', 'retainwoo' ); ?></div>
                 </div>
@@ -206,7 +206,7 @@ public static function sanitize_option( $value ) {
             <div class="cs-page-header">
                 <div class="cs-page-header-left">
                     <?php
-                        $logo_file = file_exists( RETAINWOO_PATH . 'assets/images/logo.png' ) ? 'logo.png' : '';
+                        $logo_file = file_exists( RETAINWOO_PATH . 'assets/images/logo.svg' ) ? 'logo.svg' : '';
                         $logo_url  = $logo_file ? RETAINWOO_URL . 'assets/images/' . $logo_file : '';
                         ?>
                     <div class="cs-logo"><?php if ( $logo_url ) : ?><img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php esc_attr_e( 'RetainWoo', 'retainwoo' ); ?>" width="42" height="42" /><?php else : ?>🛡️<?php endif; ?></div>
