@@ -116,11 +116,9 @@ class RetainWoo_Admin {
 	private static function nav( $current ) {
 		$pages = array(
 			'retainwoo'          => array(
-				'icon'  => '📊',
 				'label' => __( 'Dashboard', 'retainwoo' ),
 			),
 			'retainwoo-settings' => array(
-				'icon'  => '⚙️',
 				'label' => __( 'Settings', 'retainwoo' ),
 			),
 		);
@@ -128,7 +126,7 @@ class RetainWoo_Admin {
 		foreach ( $pages as $slug => $item ) {
 			$url    = admin_url( 'admin.php?page=' . $slug );
 			$active = ( $current === $slug ) ? 'cs-active' : '';
-			echo '<a href="' . esc_url( $url ) . '" class="' . esc_attr( $active ) . '">' . esc_html( $item['icon'] ) . ' ' . esc_html( $item['label'] ) . '</a>';
+			echo '<a href="' . esc_url( $url ) . '" class="' . esc_attr( $active ) . '">' . esc_html( $item['label'] ) . '</a>';
 		}
 		echo '</div>';
 	}
@@ -202,7 +200,7 @@ class RetainWoo_Admin {
 				<!-- Offer breakdown -->
 				<div class="cs-card">
 					<div class="cs-card-head">
-						<h2>🎯 <?php esc_html_e( 'Offer Performance', 'retainwoo' ); ?></h2>
+						<h2><?php esc_html_e( 'Offer Performance', 'retainwoo' ); ?></h2>
 					</div>
 					<div class="cs-card-body">
 						<?php if ( empty( $stats['breakdown'] ) ) : ?>
@@ -243,15 +241,15 @@ class RetainWoo_Admin {
 				<!-- Tips -->
 				<div class="cs-card">
 					<div class="cs-card-head">
-						<h2>💡 <?php esc_html_e( 'Tips to Improve', 'retainwoo' ); ?></h2>
+						<h2><?php esc_html_e( 'Tips to Improve', 'retainwoo' ); ?></h2>
 					</div>
 					<div class="cs-card-body">
 						<ul class="cs-tips">
-							<li><span class="cs-tip-icon">🎯</span> <?php esc_html_e( 'Enable all 3 offers — more options = higher save rate', 'retainwoo' ); ?></li>
-							<li><span class="cs-tip-icon">💸</span> <?php esc_html_e( '20% discount is the sweet spot for most stores', 'retainwoo' ); ?></li>
-							<li><span class="cs-tip-icon">📧</span> <?php esc_html_e( 'Win-back emails convert at 5-15% — keep them enabled', 'retainwoo' ); ?></li>
-							<li><span class="cs-tip-icon">📊</span> <?php esc_html_e( 'A save rate above 20% is considered excellent', 'retainwoo' ); ?></li>
-							<li><span class="cs-tip-icon">✏️</span> <?php esc_html_e( 'Customize your headline to match your brand voice', 'retainwoo' ); ?></li>
+							<li><?php esc_html_e( 'Enable all 3 offers — more options = higher save rate', 'retainwoo' ); ?></li>
+							<li><?php esc_html_e( '20% discount is the sweet spot for most stores', 'retainwoo' ); ?></li>
+							<li><?php esc_html_e( 'Win-back emails convert at 5-15% — keep them enabled', 'retainwoo' ); ?></li>
+							<li><?php esc_html_e( 'A save rate above 20% is considered excellent', 'retainwoo' ); ?></li>
+							<li><?php esc_html_e( 'Customize your headline to match your brand voice', 'retainwoo' ); ?></li>
 						</ul>
 					</div>
 				</div>
@@ -302,7 +300,6 @@ class RetainWoo_Admin {
 				<!-- General -->
 				<div class="cs-settings-section">
 					<div class="cs-settings-head">
-						<span class="cs-head-icon">⚙️</span>
 						<h3><?php esc_html_e( 'General', 'retainwoo' ); ?></h3>
 					</div>
 					<div class="cs-settings-body">
@@ -338,7 +335,6 @@ class RetainWoo_Admin {
 				<!-- Popup text -->
 				<div class="cs-settings-section">
 					<div class="cs-settings-head">
-						<span class="cs-head-icon">✏️</span>
 						<h3><?php esc_html_e( 'Popup Text', 'retainwoo' ); ?></h3>
 					</div>
 					<div class="cs-settings-body">
@@ -368,13 +364,12 @@ class RetainWoo_Admin {
 				<!-- Retention offers -->
 				<div class="cs-settings-section">
 					<div class="cs-settings-head">
-						<span class="cs-head-icon">🎯</span>
 						<h3><?php esc_html_e( 'Retention Offers', 'retainwoo' ); ?></h3>
 					</div>
 					<div class="cs-settings-body">
 						<div class="cs-field">
 							<div class="cs-field-label">
-								<strong>⏸ <?php esc_html_e( 'Pause Subscription', 'retainwoo' ); ?></strong>
+								<strong><?php esc_html_e( 'Pause Subscription', 'retainwoo' ); ?></strong>
 								<span><?php esc_html_e( 'Let customers pause for 1 or 3 months', 'retainwoo' ); ?></span>
 							</div>
 							<div class="cs-field-control">
@@ -388,7 +383,7 @@ class RetainWoo_Admin {
 						</div>
 						<div class="cs-field">
 							<div class="cs-field-label">
-								<strong>⏭ <?php esc_html_e( 'Skip Next Payment', 'retainwoo' ); ?></strong>
+								<strong><?php esc_html_e( 'Skip Next Payment', 'retainwoo' ); ?></strong>
 								<span><?php esc_html_e( 'Skip one billing cycle', 'retainwoo' ); ?></span>
 							</div>
 							<div class="cs-field-control">
@@ -412,7 +407,7 @@ class RetainWoo_Admin {
 						</div>
 						<div class="cs-field">
 							<div class="cs-field-label">
-								<strong>🎁 <?php esc_html_e( 'Discount Offer', 'retainwoo' ); ?></strong>
+								<strong><?php esc_html_e( 'Discount Offer', 'retainwoo' ); ?></strong>
 								<span><?php esc_html_e( 'Offer a discount to stay', 'retainwoo' ); ?></span>
 							</div>
 							<div class="cs-field-control">
@@ -447,7 +442,6 @@ class RetainWoo_Admin {
 				<!-- Win-back email -->
 				<div class="cs-settings-section">
 					<div class="cs-settings-head">
-						<span class="cs-head-icon">📧</span>
 						<h3><?php esc_html_e( 'Win-Back Email', 'retainwoo' ); ?> <span class="cs-badge"><?php esc_html_e( 'New', 'retainwoo' ); ?></span></h3>
 					</div>
 					<div class="cs-settings-body">
@@ -492,7 +486,7 @@ class RetainWoo_Admin {
 					</div>
 				</div>
 
-				<button type="submit" class="cs-save-btn">💾 <?php esc_html_e( 'Save Settings', 'retainwoo' ); ?></button>
+				<button type="submit" class="cs-save-btn"><?php esc_html_e( 'Save Settings', 'retainwoo' ); ?></button>
 
 			</form>
 		</div>
