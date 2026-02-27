@@ -1,4 +1,4 @@
-=== RetainWoo - Subscription Retention ===
+=== RetainWoo ===
 Contributors:      retainwoo
 Tags:              woocommerce, subscriptions, retention, cancel, churn
 Requires at least: 5.8
