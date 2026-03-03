@@ -4,7 +4,7 @@
  * Description:       Intercepts WooCommerce subscription cancellations with smart retention offers. Show pause, skip, or discount offers before a subscriber cancels. Built-in win-back email. Works with WooCommerce Subscriptions, WebToffee, YITH, and SUMO.
  * Plugin URI:        https://wordpress.org/plugins/retainwoo
  * Version:           1.0.0
- * Requires at least: 5.8
+ * Requires at least: 6.2
  * Tested up to:      6.9
  * Requires PHP:      7.4
  * Author:            Bikash Pun

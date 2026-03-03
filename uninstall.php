@@ -29,22 +29,22 @@ $retainwoo_options = array(
 /**
  * Delete all plugin options and drop the events table for a single site.
  *
- * @param array $options List of option keys to delete.
+ * @param array $retainwoo_opts List of option keys to delete.
  */
-function retainwoo_uninstall_blog( $options ) {
+function retainwoo_uninstall_blog( $retainwoo_opts ) {
 	global $wpdb;
-	foreach ( $options as $option ) {
-		delete_option( $option );
+	foreach ( $retainwoo_opts as $retainwoo_option ) {
+		delete_option( $retainwoo_option );
 	}
-	$table = $wpdb->prefix . 'retainwoo_events';
-	$wpdb->query( "DROP TABLE IF EXISTS `{$table}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
+	$retainwoo_table = esc_sql( $wpdb->prefix . 'retainwoo_events' );
+	$wpdb->query( 'DROP TABLE IF EXISTS `' . $retainwoo_table . '`' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
 }
 
 global $wpdb;
 if ( is_multisite() ) {
-	$site_list = $wpdb->get_col( "SELECT blog_id FROM `{$wpdb->blogs}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	foreach ( $site_list as $site_id ) {
-		switch_to_blog( $site_id );
+	$retainwoo_site_list = $wpdb->get_col( 'SELECT blog_id FROM `' . $wpdb->blogs . '`' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+	foreach ( $retainwoo_site_list as $retainwoo_site_id ) {
+		switch_to_blog( $retainwoo_site_id );
 		retainwoo_uninstall_blog( $retainwoo_options );
 		restore_current_blog();
 	}

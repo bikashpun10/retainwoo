@@ -71,13 +71,12 @@ class RetainWoo_Tracker {
 	public static function get_stats( $days = 30 ) {
 		global $wpdb;
 
-		$table = $wpdb->prefix . 'retainwoo_events';
+		$table = esc_sql( $wpdb->prefix . 'retainwoo_events' );
 		$since = gmdate( 'Y-m-d H:i:s', strtotime( "-{$days} days" ) );
 
 		$shown = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				'SELECT COUNT(*) FROM %i WHERE event=%s AND created_at>=%s',
-				$table,
+				'SELECT COUNT(*) FROM `' . $table . '` WHERE event=%s AND created_at>=%s', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				'popup_shown',
 				$since
 			)
@@ -85,8 +84,7 @@ class RetainWoo_Tracker {
 
 		$saved = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				'SELECT COUNT(*) FROM %i WHERE event=%s AND created_at>=%s',
-				$table,
+				'SELECT COUNT(*) FROM `' . $table . '` WHERE event=%s AND created_at>=%s', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				'offer_accepted',
 				$since
 			)
@@ -94,8 +92,7 @@ class RetainWoo_Tracker {
 
 		$lost = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				'SELECT COUNT(*) FROM %i WHERE event=%s AND created_at>=%s',
-				$table,
+				'SELECT COUNT(*) FROM `' . $table . '` WHERE event=%s AND created_at>=%s', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				'cancelled',
 				$since
 			)
@@ -103,8 +100,7 @@ class RetainWoo_Tracker {
 
 		$avg_val = (float) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				'SELECT AVG(sub_value) FROM %i WHERE event=%s AND sub_value>0 AND created_at>=%s',
-				$table,
+				'SELECT AVG(sub_value) FROM `' . $table . '` WHERE event=%s AND sub_value>0 AND created_at>=%s', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				'cancelled',
 				$since
 			)
@@ -112,8 +108,7 @@ class RetainWoo_Tracker {
 
 		$breakdown = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				'SELECT offer, COUNT(*) as cnt FROM %i WHERE event=%s AND created_at>=%s GROUP BY offer',
-				$table,
+				'SELECT offer, COUNT(*) as cnt FROM `' . $table . '` WHERE event=%s AND created_at>=%s GROUP BY offer', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				'offer_accepted',
 				$since
 			)
