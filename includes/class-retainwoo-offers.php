@@ -7,14 +7,15 @@
  * @package RetainWoo
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
 /**
  * RetainWoo Offers class.
  */
-class RetainWoo_Offers {
+class RetainWoo_Offers
+{
 
 	/**
 	 * Cooldown helper: checks if an offer was used within $months months.
@@ -25,9 +26,10 @@ class RetainWoo_Offers {
 	 * @param int    $months   Number of months for cooldown.
 	 * @return string|false
 	 */
-	private static function on_cooldown( $sub_id, $meta_key, $months ) {
-		$last = get_post_meta( $sub_id, $meta_key, true );
-		if ( $last && strtotime( $last ) > strtotime( "-{$months} months" ) ) {
+	private static function on_cooldown($sub_id, $meta_key, $months)
+	{
+		$last = get_post_meta($sub_id, $meta_key, true);
+		if ($last && strtotime($last) > strtotime("-{$months} months")) {
 			return $last; // On cooldown — return when it was last used.
 		}
 		return false;
@@ -40,120 +42,121 @@ class RetainWoo_Offers {
 	 * @param string                      $offer Offer type.
 	 * @return array Result array with 'success', 'message', and optional 'code'.
 	 */
-	public static function apply( $sub, $offer ) {
-		switch ( $offer ) {
+	public static function apply($sub, $offer)
+	{
+		switch ($offer) {
 
 			// Pause 1 month.
 			case 'pause_1':
 				// Cooldown: once per 6 months (shared with pause_3).
-				$cd = self::on_cooldown( $sub->get_id(), '_retainwoo_pause_used', 6 );
-				if ( $cd ) {
+				$cd = self::on_cooldown($sub->get_id(), '_retainwoo_pause_used', 6);
+				if ($cd) {
 					return array(
 						'success' => false,
-						'message' => __( 'You have already used a pause offer in the last 6 months.', 'retainwoo' ),
+						'message' => __('You have already used a pause offer in the last 6 months.', 'retainwoo'),
 					);
 				}
-				$ok = $sub->pause( 1 );
-				if ( $ok ) {
-					update_post_meta( $sub->get_id(), '_retainwoo_pause_used', current_time( 'mysql' ) );
+				$ok = $sub->pause(1);
+				if ($ok) {
+					update_post_meta($sub->get_id(), '_retainwoo_pause_used', current_time('mysql'));
 					return array(
 						'success' => true,
-						'message' => __( 'Your subscription has been paused for 1 month.', 'retainwoo' ),
+						'message' => __('Your subscription has been paused for 1 month.', 'retainwoo'),
 					);
 				}
 				return array(
 					'success' => false,
-					'message' => __( 'Could not pause subscription. Please contact support.', 'retainwoo' ),
+					'message' => __('Could not pause subscription. Please contact support.', 'retainwoo'),
 				);
 
 			// Pause 3 months.
 			case 'pause_3':
 				// Cooldown: once per 6 months (shared with pause_1).
-				$cd = self::on_cooldown( $sub->get_id(), '_retainwoo_pause_used', 6 );
-				if ( $cd ) {
+				$cd = self::on_cooldown($sub->get_id(), '_retainwoo_pause_used', 6);
+				if ($cd) {
 					return array(
 						'success' => false,
-						'message' => __( 'You have already used a pause offer in the last 6 months.', 'retainwoo' ),
+						'message' => __('You have already used a pause offer in the last 6 months.', 'retainwoo'),
 					);
 				}
-				$ok = $sub->pause( 3 );
-				if ( $ok ) {
-					update_post_meta( $sub->get_id(), '_retainwoo_pause_used', current_time( 'mysql' ) );
+				$ok = $sub->pause(3);
+				if ($ok) {
+					update_post_meta($sub->get_id(), '_retainwoo_pause_used', current_time('mysql'));
 					return array(
 						'success' => true,
-						'message' => __( 'Your subscription has been paused for 3 months.', 'retainwoo' ),
+						'message' => __('Your subscription has been paused for 3 months.', 'retainwoo'),
 					);
 				}
 				return array(
 					'success' => false,
-					'message' => __( 'Could not pause subscription.', 'retainwoo' ),
+					'message' => __('Could not pause subscription.', 'retainwoo'),
 				);
 
 			// Skip next payment.
 			case 'skip':
 				// Cooldown: once per configured number of months.
-				$months = (int) RetainWoo_Settings::get( 'retainwoo_skip_cooldown', 3 );
-				$cd     = self::on_cooldown( $sub->get_id(), '_retainwoo_skip_used', $months );
-				if ( $cd ) {
+				$months = (int) RetainWoo_Settings::get('retainwoo_skip_cooldown', 3);
+				$cd = self::on_cooldown($sub->get_id(), '_retainwoo_skip_used', $months);
+				if ($cd) {
 					return array(
 						'success' => false,
 						'message' => sprintf(
 							/* translators: %d: months */
-							__( 'You have already skipped a payment in the last %d months.', 'retainwoo' ),
+							__('You have already skipped a payment in the last %d months.', 'retainwoo'),
 							$months
 						),
 					);
 				}
 				$ok = $sub->skip_payment();
-				if ( $ok ) {
-					update_post_meta( $sub->get_id(), '_retainwoo_skip_used', current_time( 'mysql' ) );
+				if ($ok) {
+					update_post_meta($sub->get_id(), '_retainwoo_skip_used', current_time('mysql'));
 					return array(
 						'success' => true,
-						'message' => __( 'Your next payment has been skipped.', 'retainwoo' ),
+						'message' => __('Your next payment has been skipped.', 'retainwoo'),
 					);
 				}
 				return array(
 					'success' => false,
-					'message' => __( 'Could not skip payment.', 'retainwoo' ),
+					'message' => __('Could not skip payment.', 'retainwoo'),
 				);
 
 			// Discount.
 			case 'discount':
 				// Hard block: one discount per subscription, ever.
-				$already_used = get_post_meta( $sub->get_id(), '_retainwoo_discount_used', true );
-				if ( $already_used ) {
+				$already_used = get_post_meta($sub->get_id(), '_retainwoo_discount_used', true);
+				if ($already_used) {
 					return array(
 						'success' => false,
-						'message' => __( 'A discount has already been applied to this subscription. Please contact support if you need further help.', 'retainwoo' ),
+						'message' => __('A discount has already been applied to this subscription. Please contact support if you need further help.', 'retainwoo'),
 					);
 				}
-				$amount = RetainWoo_Settings::get( 'retainwoo_discount_amount', 20 );
-				$type   = RetainWoo_Settings::get( 'retainwoo_discount_type', 'percent' );
-				$code   = $sub->apply_discount( $amount, $type );
-				if ( $code ) {
-					update_post_meta( $sub->get_id(), '_retainwoo_discount_used', current_time( 'mysql' ) );
-					$label   = 'percent' === $type ? $amount . '%' : '$' . $amount;
+				$amount = RetainWoo_Settings::get('retainwoo_discount_amount', 20);
+				$type = RetainWoo_Settings::get('retainwoo_discount_type', 'percent');
+				$code = $sub->apply_discount($amount, $type);
+				if ($code) {
+					update_post_meta($sub->get_id(), '_retainwoo_discount_used', current_time('mysql'));
+					$label = 'percent' === $type ? $amount . '%' : '$' . $amount;
 					$message = sprintf(
 						/* translators: 1: discount label e.g. "20%" 2: coupon code */
-						__( '%1$s discount applied! Your coupon code: %2$s. Your subscription will renew at the discounted rate.', 'retainwoo' ),
+						__('%1$s discount applied! Your coupon code: %2$s. Your subscription will renew at the discounted rate.', 'retainwoo'),
 						$label,
 						$code
 					);
 					return array(
 						'success' => true,
 						'message' => $message,
-						'code'    => $code,
+						'code' => $code,
 					);
 				}
 				return array(
 					'success' => false,
-					'message' => __( 'Could not apply discount.', 'retainwoo' ),
+					'message' => __('Could not apply discount.', 'retainwoo'),
 				);
 
 			default:
 				return array(
 					'success' => false,
-					'message' => 'Unknown offer.',
+					'message' => __('Unknown offer.', 'retainwoo'),
 				);
 		}
 	}
@@ -165,12 +168,13 @@ class RetainWoo_Offers {
 	 * @param int $sub_id Subscription ID.
 	 * @return array
 	 */
-	public static function get_eligibility( $sub_id ) {
-		$skip_months = (int) RetainWoo_Settings::get( 'retainwoo_skip_cooldown', 3 );
+	public static function get_eligibility($sub_id)
+	{
+		$skip_months = (int) RetainWoo_Settings::get('retainwoo_skip_cooldown', 3);
 		return array(
-			'discount' => ! get_post_meta( $sub_id, '_retainwoo_discount_used', true ),
-			'skip'     => ! self::on_cooldown( $sub_id, '_retainwoo_skip_used', $skip_months ),
-			'pause'    => ! self::on_cooldown( $sub_id, '_retainwoo_pause_used', 6 ),
+			'discount' => !get_post_meta($sub_id, '_retainwoo_discount_used', true),
+			'skip' => !self::on_cooldown($sub_id, '_retainwoo_skip_used', $skip_months),
+			'pause' => !self::on_cooldown($sub_id, '_retainwoo_pause_used', 6),
 		);
 	}
 }

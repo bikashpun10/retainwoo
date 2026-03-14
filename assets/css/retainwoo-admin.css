@@ -101,13 +101,13 @@
 
 	0%,
 	100% {
-	opacity: 1;
-	transform: scale(1);
+		opacity: 1;
+		transform: scale(1);
 	}
 
 	50% {
-	opacity: 0.5;
-	transform: scale(0.8);
+		opacity: 0.5;
+		transform: scale(0.8);
 	}
 }
 
@@ -132,13 +132,13 @@
 
 @media (max-width: 1000px) {
 	.cs-stats-row {
-	grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
 @media (max-width: 600px) {
 	.cs-stats-row {
-	grid-template-columns: 1fr;
+		grid-template-columns: 1fr;
 	}
 }
 
@@ -226,7 +226,7 @@
 
 @media (max-width: 800px) {
 	.cs-two-col {
-	grid-template-columns: 1fr;
+		grid-template-columns: 1fr;
 	}
 }
 
@@ -488,7 +488,8 @@
 
 /* Text inputs */
 .cs-field-control input[type="text"],
-.cs-field-control input[type="number"] {
+.cs-field-control input[type="number"],
+.cs-field-control textarea {
 	border: 1.5px solid var(--cs-border) !important;
 	border-radius: 9px !important;
 	padding: 9px 13px !important;
@@ -502,7 +503,8 @@
 }
 
 .cs-field-control input[type="text"]:focus,
-.cs-field-control input[type="number"]:focus {
+.cs-field-control input[type="number"]:focus,
+.cs-field-control textarea:focus {
 	border-color: var(--cs-accent) !important;
 	box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
 }
@@ -568,13 +570,14 @@
 /* ── Nav tabs ── */
 .cs-nav {
 	display: flex;
+	align-items: center;
 	gap: 4px;
 	margin-bottom: 24px;
 	background: var(--cs-surface);
 	border: 1px solid var(--cs-border);
 	border-radius: 12px;
 	padding: 5px;
-	width: fit-content;
+	width: 100%;
 	box-shadow: var(--cs-shadow);
 }
 
@@ -609,4 +612,150 @@
 	padding: 4px 12px;
 	border-radius: 20px;
 	border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ================================================================
+   Popup Preview — Button & Modal
+   ================================================================ */
+
+/* Preview button — sits right next to nav tabs, no margin-left:auto */
+.cs-preview-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 18px;
+	background: transparent;
+	border: 1.5px dashed var(--cs-border);
+	color: var(--cs-muted);
+	border-radius: 9px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.15s;
+	line-height: 1;
+}
+
+.cs-preview-btn:hover {
+	color: var(--cs-accent);
+	background: #f0f0ff;
+	border-color: var(--cs-accent);
+	box-shadow: none;
+}
+
+.cs-preview-btn.cs-preview-active {
+	background: var(--cs-accent);
+	color: #fff;
+	border-color: var(--cs-accent);
+	box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+/* Full-screen modal overlay */
+#cs-preview-overlay {
+	display: none;
+	position: fixed;
+	inset: 0;
+	z-index: 999999;
+	background: rgba(10, 10, 20, 0.72);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+}
+
+#cs-preview-overlay.cs-preview-visible {
+	display: flex;
+	animation: cs-preview-fade-in 0.25s ease;
+}
+
+@keyframes cs-preview-fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+/* Modal inner card */
+#cs-preview-modal {
+	background: #1a1a2e;
+	border-radius: 20px;
+	padding: 28px 28px 32px;
+	width: 100%;
+	max-width: 540px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 18px;
+	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+	animation: cs-preview-pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cs-preview-pop-in {
+	from {
+		transform: scale(0.9) translateY(20px);
+		opacity: 0;
+	}
+
+	to {
+		transform: scale(1) translateY(0);
+		opacity: 1;
+	}
+}
+
+/* Label bar inside modal */
+#cs-preview-label {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	color: rgba(255, 255, 255, 0.6);
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+/* Close button */
+#cs-preview-close {
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	color: rgba(255, 255, 255, 0.7);
+	border-radius: 6px;
+	padding: 4px 12px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.15s, color 0.15s;
+	white-space: nowrap;
+}
+
+#cs-preview-close:hover {
+	background: rgba(255, 255, 255, 0.2);
+	color: #fff;
+}
+
+/* Popup wrapper inside modal */
+#cs-preview-popup-wrap {
+	width: 100%;
+	max-width: 480px;
+}
+
+#cs-preview-popup-wrap #cs-overlay {
+	position: relative !important;
+	inset: auto !important;
+	background: none !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+	padding: 0 !important;
+	display: flex !important;
+	justify-content: center;
+}
+
+#cs-preview-popup-wrap #cs-popup {
+	width: 100%;
+	max-width: 460px;
 }

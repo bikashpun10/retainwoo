@@ -7,7 +7,7 @@
  * @package RetainWoo
  */
 
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if (!defined('WP_UNINSTALL_PLUGIN')) {
 	exit;
 }
 
@@ -23,6 +23,9 @@ $retainwoo_options = array(
 	'retainwoo_subheadline',
 	'retainwoo_winback_enabled',
 	'retainwoo_winback_subject',
+	'retainwoo_winback_heading',
+	'retainwoo_winback_body',
+	'retainwoo_winback_button',
 	'retainwoo_winback_delay',
 );
 
@@ -31,23 +34,24 @@ $retainwoo_options = array(
  *
  * @param array $retainwoo_opts List of option keys to delete.
  */
-function retainwoo_uninstall_blog( $retainwoo_opts ) {
+function retainwoo_uninstall_blog($retainwoo_opts)
+{
 	global $wpdb;
-	foreach ( $retainwoo_opts as $retainwoo_option ) {
-		delete_option( $retainwoo_option );
+	foreach ($retainwoo_opts as $retainwoo_option) {
+		delete_option($retainwoo_option);
 	}
-	$retainwoo_table = esc_sql( $wpdb->prefix . 'retainwoo_events' );
-	$wpdb->query( 'DROP TABLE IF EXISTS `' . $retainwoo_table . '`' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
+	$retainwoo_table = esc_sql($wpdb->prefix . 'retainwoo_events');
+	$wpdb->query('DROP TABLE IF EXISTS `' . $retainwoo_table . '`'); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
 }
 
 global $wpdb;
-if ( is_multisite() ) {
-	$retainwoo_site_list = $wpdb->get_col( 'SELECT blog_id FROM `' . $wpdb->blogs . '`' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-	foreach ( $retainwoo_site_list as $retainwoo_site_id ) {
-		switch_to_blog( $retainwoo_site_id );
-		retainwoo_uninstall_blog( $retainwoo_options );
+if (is_multisite()) {
+	$retainwoo_site_list = $wpdb->get_col('SELECT blog_id FROM `' . $wpdb->blogs . '`'); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+	foreach ($retainwoo_site_list as $retainwoo_site_id) {
+		switch_to_blog($retainwoo_site_id);
+		retainwoo_uninstall_blog($retainwoo_options);
 		restore_current_blog();
 	}
 } else {
-	retainwoo_uninstall_blog( $retainwoo_options );
+	retainwoo_uninstall_blog($retainwoo_options);
 }

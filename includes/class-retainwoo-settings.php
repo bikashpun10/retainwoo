@@ -7,19 +7,22 @@
  * @package RetainWoo
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
 /**
  * RetainWoo Settings class.
  */
-class RetainWoo_Settings {
+class RetainWoo_Settings
+{
 
 	/**
 	 * Initialize settings.
 	 */
-	public static function init() {}
+	public static function init()
+	{
+	}
 
 	/**
 	 * Get a single setting value.
@@ -28,8 +31,9 @@ class RetainWoo_Settings {
 	 * @param mixed  $fallback     Fallback value if option is not set.
 	 * @return mixed
 	 */
-	public static function get( $key, $fallback = '' ) {
-		return get_option( $key, $fallback );
+	public static function get($key, $fallback = '')
+	{
+		return get_option($key, $fallback);
 	}
 
 	/**
@@ -37,8 +41,9 @@ class RetainWoo_Settings {
 	 *
 	 * @return bool
 	 */
-	public static function is_enabled() {
-		return '1' === self::get( 'retainwoo_enabled', '1' );
+	public static function is_enabled()
+	{
+		return '1' === self::get('retainwoo_enabled', '1');
 	}
 
 	/**
@@ -46,17 +51,18 @@ class RetainWoo_Settings {
 	 *
 	 * @return array
 	 */
-	public static function get_all() {
+	public static function get_all()
+	{
 		return array(
-			'enabled'         => self::is_enabled(),
-			'offer_pause'     => '1' === self::get( 'retainwoo_offer_pause', '1' ),
-			'offer_skip'      => '1' === self::get( 'retainwoo_offer_skip', '1' ),
-			'skip_cooldown'   => (int) self::get( 'retainwoo_skip_cooldown', 3 ),
-			'offer_discount'  => '1' === self::get( 'retainwoo_offer_discount', '1' ),
-			'discount_amount' => (float) self::get( 'retainwoo_discount_amount', 20 ),
-			'discount_type'   => self::get( 'retainwoo_discount_type', 'percent' ),
-			'headline'        => self::get( 'retainwoo_headline', 'Wait — before you go!' ),
-			'subheadline'     => self::get( 'retainwoo_subheadline', "We'd hate to lose you." ),
+			'enabled' => self::is_enabled(),
+			'offer_pause' => '1' === self::get('retainwoo_offer_pause', '1'),
+			'offer_skip' => '1' === self::get('retainwoo_offer_skip', '1'),
+			'skip_cooldown' => (int) self::get('retainwoo_skip_cooldown', 3),
+			'offer_discount' => '1' === self::get('retainwoo_offer_discount', '1'),
+			'discount_amount' => (float) self::get('retainwoo_discount_amount', 20),
+			'discount_type' => self::get('retainwoo_discount_type', 'percent'),
+			'headline' => self::get('retainwoo_headline', __('Wait — before you go!', 'retainwoo')),
+			'subheadline' => self::get('retainwoo_subheadline', __("We'd hate to lose you.", 'retainwoo')),
 		);
 	}
 }
