@@ -759,3 +759,31 @@
 	width: 100%;
 	max-width: 460px;
 }
+
+/* ================================================================
+   WhatsApp Setup Steps
+   ================================================================ */
+.cs-whatsapp-steps {
+	background: var(--cs-bg);
+	border: 1px solid var(--cs-border);
+	border-radius: 10px;
+	padding: 14px 18px;
+	font-size: 13px;
+	color: var(--cs-muted);
+	line-height: 1.7;
+}
+.cs-whatsapp-steps p {
+	margin: 0 0 8px;
+}
+.cs-whatsapp-steps p:last-child {
+	margin-bottom: 0;
+}
+.cs-whatsapp-steps code {
+	background: #fff;
+	border: 1px solid var(--cs-border);
+	border-radius: 5px;
+	padding: 2px 8px;
+	font-size: 12px;
+	color: var(--cs-accent);
+	font-family: monospace;
+}

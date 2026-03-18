@@ -83,6 +83,9 @@ class RetainWoo_WinBack
 
 		wp_mail($email, $subject, $message, $headers);
 
+		// Email notification — alert store owner that win-back email was sent.
+		RetainWoo_Notifications::notify_winback($email, $sub_id);
+
 		// Log the win-back send event.
 		RetainWoo_Tracker::track($sub_id, 0, 'winback_sent', 'email', 0);
 	}

@@ -3,7 +3,7 @@
  * Plugin Name:       RetainWoo
  * Description:       Intercepts WooCommerce subscription cancellations with smart retention offers. Show pause, skip, or discount offers before a subscriber cancels. Built-in win-back email. Works with WooCommerce Subscriptions, WebToffee, YITH, and SUMO.
  * Plugin URI:        https://wordpress.org/plugins/retainwoo
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.2
  * Tested up to:      6.9
  * Requires PHP:      7.4
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define('RETAINWOO_VERSION', '1.0.1');
+define('RETAINWOO_VERSION', '1.1.0');
 define('RETAINWOO_PATH', plugin_dir_path(__FILE__));
 define('RETAINWOO_URL', plugin_dir_url(__FILE__));
 
@@ -41,6 +41,7 @@ require_once RETAINWOO_PATH . 'includes/class-retainwoo-interceptor.php';
 require_once RETAINWOO_PATH . 'includes/class-retainwoo-offers.php';
 require_once RETAINWOO_PATH . 'includes/class-retainwoo-tracker.php';
 require_once RETAINWOO_PATH . 'includes/class-retainwoo-winback.php';
+require_once RETAINWOO_PATH . 'includes/class-retainwoo-notifications.php';
 require_once RETAINWOO_PATH . 'includes/class-retainwoo-cron.php';
 require_once RETAINWOO_PATH . 'admin/class-retainwoo-admin.php';
 
@@ -60,6 +61,7 @@ function retainwoo_init()
 	RetainWoo_Interceptor::init();
 	RetainWoo_Tracker::init();
 	RetainWoo_WinBack::init();
+	RetainWoo_Notifications::init();
 	RetainWoo_Admin::init();
 }
 add_action('plugins_loaded', 'retainwoo_init', 20);

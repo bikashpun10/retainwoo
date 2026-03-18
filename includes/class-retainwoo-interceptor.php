@@ -145,6 +145,7 @@ class RetainWoo_Interceptor
 
 		if ($result['success']) {
 			RetainWoo_Tracker::track($sub_id, $sub->get_customer_id(), 'offer_accepted', $offer, $sub->get_total());
+			RetainWoo_Notifications::notify_saved($sub_id, $offer);
 			$data = array('message' => $result['message']);
 			if (!empty($result['code'])) {
 				$data['code'] = $result['code'];

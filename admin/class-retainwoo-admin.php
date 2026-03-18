@@ -66,6 +66,8 @@ class RetainWoo_Admin
 			'retainwoo_winback_body',
 			'retainwoo_winback_button',
 			'retainwoo_winback_delay',
+			'retainwoo_notify_enabled',
+			'retainwoo_notify_email',
 		);
 
 		foreach ($keys as $k) {
@@ -585,7 +587,85 @@ class RetainWoo_Admin
 					</div>
 				</div>
 
-				<button type="submit" class="cs-save-btn"><?php esc_html_e('Save Settings', 'retainwoo'); ?></button>
+				<!-- Email Notifications -->
+				<div class="cs-settings-section">
+					<div class="cs-settings-head">
+						<h3><?php esc_html_e( 'Email Notifications', 'retainwoo' ); ?> <span class="cs-badge"><?php esc_html_e( 'New', 'retainwoo' ); ?></span></h3>
+					</div>
+					<div class="cs-settings-body">
+
+						<div class="cs-field">
+							<div class="cs-field-label">
+								<strong><?php esc_html_e( 'Enable Email Alerts', 'retainwoo' ); ?></strong>
+								<span><?php esc_html_e( 'Get notified by email when a subscriber is saved or a win-back email is sent', 'retainwoo' ); ?></span>
+							</div>
+							<div class="cs-field-control">
+								<label class="cs-toggle">
+									<input type="checkbox" name="retainwoo_notify_enabled" value="1"
+										<?php checked( get_option( 'retainwoo_notify_enabled', '1' ), '1' ); ?>>
+									<span class="cs-toggle-track"><span class="cs-toggle-knob"></span></span>
+									<span class="cs-toggle-label"><?php esc_html_e( 'Enabled', 'retainwoo' ); ?></span>
+								</label>
+							</div>
+						</div>
+
+						<div class="cs-field">
+							<div class="cs-field-label">
+								<strong><?php esc_html_e( 'Notification Email', 'retainwoo' ); ?></strong>
+								<span><?php
+									printf(
+										/* translators: %s: admin email address */
+										esc_html__( 'Where to send alerts. Leave blank to use admin email (%s)', 'retainwoo' ),
+										esc_html( get_option( 'admin_email' ) )
+									);
+								?></span>
+							</div>
+							<div class="cs-field-control">
+								<input type="email" name="retainwoo_notify_email"
+									placeholder="<?php echo esc_attr( get_option( 'admin_email' ) ); ?>"
+									style="width:100%"
+									value="<?php echo esc_attr( get_option( 'retainwoo_notify_email', '' ) ); ?>">
+							</div>
+						</div>
+
+						<div class="cs-field">
+							<div class="cs-field-label">
+								<strong><?php esc_html_e( 'Test Notification', 'retainwoo' ); ?></strong>
+								<span><?php esc_html_e( 'Send a test email to confirm notifications are working', 'retainwoo' ); ?></span>
+							</div>
+							<div class="cs-field-control" style="display:flex;align-items:center;gap:12px;">
+								<button type="button" id="cs-test-notify" class="cs-preview-btn">
+									<?php esc_html_e( 'Send Test Email', 'retainwoo' ); ?>
+								</button>
+								<span id="cs-notify-result" style="font-size:13px;color:var(--cs-muted);"></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<button type="submit" class="cs-save-btn"><?php esc_html_e( 'Save Settings', 'retainwoo' ); ?></button>
+
+				<script>
+				jQuery( document ).ready( function( $ ) {
+					$( '#cs-test-notify' ).on( 'click', function() {
+						var btn    = $( this );
+						var result = $( '#cs-notify-result' );
+						btn.prop( 'disabled', true ).text( '<?php echo esc_js( __( 'Sending...', 'retainwoo' ) ); ?>' );
+						result.text( '' );
+						$.post( ajaxurl, {
+							action: 'retainwoo_test_notification',
+							nonce:  '<?php echo esc_js( wp_create_nonce( 'retainwoo_nonce' ) ); ?>',
+						}, function( res ) {
+							btn.prop( 'disabled', false ).text( '<?php echo esc_js( __( 'Send Test Email', 'retainwoo' ) ); ?>' );
+							result.text( res.data.message );
+						} ).fail( function() {
+							btn.prop( 'disabled', false ).text( '<?php echo esc_js( __( 'Send Test Email', 'retainwoo' ) ); ?>' );
+							result.text( '<?php echo esc_js( __( 'Request failed. Please try again.', 'retainwoo' ) ); ?>' );
+						} );
+					} );
+				} );
+				</script>
 
 			</form>
 
