@@ -487,23 +487,31 @@
 }
 
 /* Text inputs */
-.cs-field-control input[type="text"],
-.cs-field-control input[type="number"],
+.cs-field-control .cs-input,
 .cs-field-control textarea {
 	border: 1.5px solid var(--cs-border) !important;
 	border-radius: 9px !important;
 	padding: 9px 13px !important;
-	font-size: 13.5px !important;
+	font-size: 14px !important;
+	font-weight: normal !important;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 	color: var(--cs-text) !important;
 	background: #fafbff !important;
+	width: 100% !important;
+	max-width: 500px !important;
 	transition: border-color 0.15s, box-shadow 0.15s !important;
 	box-shadow: none !important;
 	outline: none !important;
 }
 
-.cs-field-control input[type="text"]:focus,
-.cs-field-control input[type="number"]:focus,
+.cs-field-control .cs-input::placeholder,
+.cs-field-control textarea::placeholder {
+	color: var(--cs-muted) !important;
+	opacity: 0.5 !important;
+	font-weight: normal !important;
+}
+
+.cs-field-control .cs-input:focus,
 .cs-field-control textarea:focus {
 	border-color: var(--cs-accent) !important;
 	box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
@@ -513,7 +521,8 @@
 	border: 1.5px solid var(--cs-border) !important;
 	border-radius: 9px !important;
 	padding: 9px 13px !important;
-	font-size: 13.5px !important;
+	font-size: 14px !important;
+	font-weight: normal !important;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 	color: var(--cs-text) !important;
 	background: #fafbff !important;
