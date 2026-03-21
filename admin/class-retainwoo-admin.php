@@ -38,7 +38,7 @@ class RetainWoo_Admin
 			'manage_woocommerce', // phpcs:ignore WordPress.WP.Capabilities.Unknown
 			'retainwoo',
 			array(__CLASS__, 'dashboard'),
-			'dashicons-shield-alt',
+			'data:image/svg+xml;base64,' . base64_encode( file_get_contents( RETAINWOO_PATH . 'assets/images/menu-icon.svg' ) ),
 			58
 		);
 		add_submenu_page('retainwoo', __('Dashboard', 'retainwoo'), __('Dashboard', 'retainwoo'), 'manage_woocommerce', 'retainwoo', array(__CLASS__, 'dashboard')); // phpcs:ignore WordPress.WP.Capabilities.Unknown
@@ -368,7 +368,8 @@ class RetainWoo_Admin
 
 			<?php self::nav('retainwoo-settings'); ?>
 			<style>
-				.cs-field-control .cs-input, .cs-field-control textarea {
+				.cs-field-control .cs-input,
+				.cs-field-control textarea {
 					border: 1.5px solid var(--cs-border) !important;
 					border-radius: 9px !important;
 					padding: 9px 13px !important;
@@ -383,11 +384,15 @@ class RetainWoo_Admin
 					outline: none !important;
 					transition: border-color 0.15s, box-shadow 0.15s !important;
 				}
-				.cs-field-control .cs-input:focus, .cs-field-control textarea:focus {
+
+				.cs-field-control .cs-input:focus,
+				.cs-field-control textarea:focus {
 					border-color: var(--cs-accent) !important;
 					box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
 				}
-				.cs-field-control .cs-input::placeholder, .cs-field-control textarea::placeholder {
+
+				.cs-field-control .cs-input::placeholder,
+				.cs-field-control textarea::placeholder {
 					color: var(--cs-muted) !important;
 					opacity: 0.5 !important;
 					font-weight: normal !important;
@@ -497,7 +502,8 @@ class RetainWoo_Admin
 								<span><?php esc_html_e('Number of months before the skip offer can be used again', 'retainwoo'); ?></span>
 							</div>
 							<div class="cs-field-control">
-								<input type="number" name="retainwoo_skip_cooldown" class="cs-input" min="0" step="1" style="width:60px"
+								<input type="number" name="retainwoo_skip_cooldown" class="cs-input" min="0" step="1"
+									style="width:60px"
 									value="<?php echo esc_attr(get_option('retainwoo_skip_cooldown', 3)); ?>">
 								<?php esc_html_e('months', 'retainwoo'); ?>
 							</div>
@@ -522,7 +528,8 @@ class RetainWoo_Admin
 							</div>
 							<div class="cs-field-control">
 								<div class="cs-inline-fields">
-									<input type="number" name="retainwoo_discount_amount" class="cs-input" min="1" max="100" style="width:80px"
+									<input type="number" name="retainwoo_discount_amount" class="cs-input" min="1" max="100"
+										style="width:80px"
 										value="<?php echo esc_attr(get_option('retainwoo_discount_amount', 20)); ?>">
 									<select name="retainwoo_discount_type">
 										<option value="percent" <?php selected(get_option('retainwoo_discount_type'), 'percent'); ?>><?php esc_html_e('% off', 'retainwoo'); ?></option>
@@ -602,7 +609,8 @@ class RetainWoo_Admin
 							</div>
 							<div class="cs-field-control">
 								<div class="cs-inline-fields">
-									<input type="number" name="retainwoo_winback_delay" class="cs-input" min="0" max="30" style="width:70px"
+									<input type="number" name="retainwoo_winback_delay" class="cs-input" min="0" max="30"
+										style="width:70px"
 										value="<?php echo esc_attr(get_option('retainwoo_winback_delay', 1)); ?>">
 									<span
 										style="color:#888; font-size:13px"><?php esc_html_e('day(s) after cancellation', 'retainwoo'); ?></span>
