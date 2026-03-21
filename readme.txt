@@ -1,5 +1,5 @@
 === RetainWoo ===
-Contributors:      bikashpun
+Contributors:      bikashpun, envitetech
 Tags:              woocommerce, subscriptions, retention, cancel, churn
 Requires at least: 6.2
 Tested up to:      6.9
@@ -15,13 +15,13 @@ Stop losing subscribers. Show smart retention offers the moment someone tries to
 
 **RetainWoo intercepts WooCommerce subscription cancellations and shows a beautiful popup with retention offers before the subscriber leaves.**
 
-Most stores lose subscribers silently — the customer clicks cancel, the subscription ends, and no one ever finds out why. RetainWoo stops that from happening.
+Most stores lose subscribers silently, the customer clicks cancel, the subscription ends, and no one ever finds out why. RetainWoo stops that from happening.
 
 When a subscriber clicks the cancel button, a polished popup appears instantly with three retention options:
 
-* **Pause** — Let them pause for 1 or 3 months instead of cancelling
-* **Skip** — Skip their next payment to give them breathing room (can only be used once every 3 months)
-* **Discount** — Offer a percentage or fixed discount to stay
+* **Pause**: Let them pause for 1 or 3 months instead of cancelling
+* **Skip**: Skip their next payment to give them breathing room (can only be used once every 3 months)
+* **Discount**: Offer a percentage or fixed discount to stay
 
 If they still cancel, RetainWoo automatically sends a **win-back email** with a unique coupon code — giving you a second chance to recover that subscriber.
 
@@ -29,11 +29,11 @@ Everything is tracked in a clean dashboard so you can see exactly how much reven
 
 = Why RetainWoo? =
 
-* **Offer first, not a survey** — Competitors show a survey before the offer. RetainWoo shows the offer immediately, which gets higher acceptance.
-* **Works with 4 subscription plugins** — WooCommerce Subscriptions, WebToffee, YITH, and SUMO all auto-detected.
-* **5-minute setup** — Install, activate, done. No complex configuration required.
-* **Built-in win-back email** — Other plugins require Klaviyo or Mailchimp. RetainWoo sends beautiful win-back emails automatically.
-* **Self-contained design** — The popup looks great on every theme without any CSS conflicts.
+* **Offer first, not a survey**: Competitors show a survey before the offer. RetainWoo shows the offer immediately, which gets higher acceptance.
+* **Works with 4 subscription plugins**: WooCommerce Subscriptions, WebToffee, YITH, and SUMO all auto-detected.
+* **5-minute setup**: Install, activate, done. No complex configuration required.
+* **Built-in win-back email**: Other plugins require Klaviyo or Mailchimp. RetainWoo sends beautiful win-back emails automatically.
+* **Self-contained design**: The popup looks great on every theme without any CSS conflicts.
 
 = Features =
 

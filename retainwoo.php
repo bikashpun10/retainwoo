@@ -7,7 +7,7 @@
  * Requires at least: 6.2
  * Tested up to:      6.9
  * Requires PHP:      7.4
- * Author:            Bikash Pun
+ * Author:            Bikash Pun, EnviteTech
  * Author URI:        https://envitetech.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define('RETAINWOO_VERSION', '1.1.0');
+define('RETAINWOO_VERSION', '1.1.3');
 define('RETAINWOO_PATH', plugin_dir_path(__FILE__));
 define('RETAINWOO_URL', plugin_dir_url(__FILE__));
 
