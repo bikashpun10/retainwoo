@@ -13,7 +13,7 @@ Stop losing subscribers. Show smart retention offers the moment someone tries to
 
 == Description ==
 
-**RetainWoo intercepts WooCommerce subscription cancellations and shows a beautiful popup with retention offers before the subscriber leaves.**
+**RetainWoo shows a popup with special offers when a subscriber tries to cancel, helping you keep more paying customers.**
 
 Most stores lose subscribers silently, the customer clicks cancel, the subscription ends, and no one ever finds out why. RetainWoo stops that from happening.
 
