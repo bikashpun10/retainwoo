@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define('RETAINWOO_VERSION', '1.1.3');
+define('RETAINWOO_VERSION', '1.1.0');
 define('RETAINWOO_PATH', plugin_dir_path(__FILE__));
 define('RETAINWOO_URL', plugin_dir_url(__FILE__));
 
@@ -53,16 +53,20 @@ require_once RETAINWOO_PATH . 'admin/class-retainwoo-admin.php';
 function retainwoo_init()
 {
 	RetainWoo_Compat::detect();
-	if (!RetainWoo_Compat::is_supported()) {
-		add_action('admin_notices', 'retainwoo_missing_plugin_notice');
+
+	// Always load settings, admin and notifications regardless of subscription plugin.
+	RetainWoo_Settings::init();
+	RetainWoo_Notifications::init();
+	RetainWoo_Admin::init();
+
+	// Only load frontend features if a supported subscription plugin is active.
+	if ( ! RetainWoo_Compat::is_supported() ) {
 		return;
 	}
-	RetainWoo_Settings::init();
+
 	RetainWoo_Interceptor::init();
 	RetainWoo_Tracker::init();
 	RetainWoo_WinBack::init();
-	RetainWoo_Notifications::init();
-	RetainWoo_Admin::init();
 }
 add_action('plugins_loaded', 'retainwoo_init', 20);
 

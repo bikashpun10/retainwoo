@@ -215,6 +215,22 @@ class RetainWoo_Admin
 
 			<?php self::nav('retainwoo'); ?>
 
+			<?php if ( ! RetainWoo_Compat::is_supported() ) : ?>
+			<div class="cs-notice-banner">
+				<div class="cs-notice-banner-icon">⚠️</div>
+				<div class="cs-notice-banner-body">
+					<strong><?php esc_html_e( 'No subscription plugin detected', 'retainwoo' ); ?></strong>
+					<p><?php esc_html_e( 'RetainWoo needs a subscription plugin to stop subscription cancellations. The popup will not appear until you install one of the supported plugins below.', 'retainwoo' ); ?></p>
+					<div class="cs-notice-plugins">
+						<span class="cs-notice-plugin-link">WooCommerce Subscriptions</span>
+						<span class="cs-notice-plugin-link">WebToffee Subscriptions</span>
+						<span class="cs-notice-plugin-link">YITH Subscriptions</span>
+						<span class="cs-notice-plugin-link">SUMO Subscriptions</span>
+					</div>
+				</div>
+			</div>
+			<?php endif; ?>
+
 			<!-- Stats -->
 			<div class="cs-section-title"><?php esc_html_e('Last 30 days', 'retainwoo'); ?></div>
 			<div class="cs-stats-row">
@@ -401,6 +417,23 @@ class RetainWoo_Admin
 			<form method="post" action="options.php">
 				<?php settings_fields('retainwoo_options'); ?>
 
+				<?php if ( ! RetainWoo_Compat::is_supported() ) : ?>
+				<!-- No subscription plugin notice -->
+				<div class="cs-notice-banner">
+					<div class="cs-notice-banner-icon">⚠️</div>
+					<div class="cs-notice-banner-body">
+						<strong><?php esc_html_e( 'No subscription plugin detected', 'retainwoo' ); ?></strong>
+						<p><?php esc_html_e( 'RetainWoo needs a subscription plugin to stop subscription cancellations. You can configure your settings now, but the popup will not appear until you install one of the supported plugins below.', 'retainwoo' ); ?></p>
+						<div class="cs-notice-plugins">
+							<a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=woocommerce+subscriptions&tab=search' ) ); ?>" class="cs-notice-plugin-link">WooCommerce Subscriptions</a>
+							<a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=subscriptions+for+woocommerce+webtoffee&tab=search' ) ); ?>" class="cs-notice-plugin-link">WebToffee Subscriptions</a>
+							<a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=yith+woocommerce+subscription&tab=search' ) ); ?>" class="cs-notice-plugin-link">YITH Subscriptions</a>
+							<a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=sumo+subscriptions&tab=search' ) ); ?>" class="cs-notice-plugin-link">SUMO Subscriptions</a>
+						</div>
+					</div>
+				</div>
+				<?php endif; ?>
+
 				<!-- General -->
 				<div class="cs-settings-section">
 					<div class="cs-settings-head">
@@ -426,10 +459,17 @@ class RetainWoo_Admin
 								<span><?php esc_html_e('Auto-detected subscription plugin', 'retainwoo'); ?></span>
 							</div>
 							<div class="cs-field-control">
-								<span class="cs-plugin-badge">
-									<span class="cs-plugin-badge-dot"></span>
-									<?php echo esc_html(RetainWoo_Compat::get_plugin_name()); ?>
-								</span>
+								<?php if ( RetainWoo_Compat::is_supported() ) : ?>
+									<span class="cs-plugin-badge">
+										<span class="cs-plugin-badge-dot"></span>
+										<?php echo esc_html( RetainWoo_Compat::get_plugin_name() ); ?>
+									</span>
+								<?php else : ?>
+									<span class="cs-plugin-badge cs-plugin-badge--none">
+										<span class="cs-plugin-badge-dot cs-plugin-badge-dot--none"></span>
+										<?php esc_html_e( 'None detected', 'retainwoo' ); ?>
+									</span>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
